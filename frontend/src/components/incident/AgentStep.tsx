@@ -110,11 +110,11 @@ export function AgentStep({ event, state, defaultExpanded = false }: Props) {
         {open && expandable && (
           <motion.div
             key="body"
-            initial={reduced ? { opacity: 0 } : { opacity: 0, height: 0 }}
-            animate={reduced ? { opacity: 1 } : { opacity: 1, height: "auto" }}
-            exit={reduced ? { opacity: 0 } : { opacity: 0, height: 0 }}
+            layout
+            initial={reduced ? { opacity: 0 } : { opacity: 0, y: -6 }}
+            animate={reduced ? { opacity: 1 } : { opacity: 1, y: 0 }}
+            exit={reduced ? { opacity: 0 } : { opacity: 0, y: -6 }}
             transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
-            className="overflow-hidden"
           >
             <ExpandedBody event={event} />
           </motion.div>
