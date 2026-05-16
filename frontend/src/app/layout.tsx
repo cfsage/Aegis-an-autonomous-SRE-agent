@@ -10,7 +10,7 @@ import "./globals.css";
 const fraunces = Fraunces({
   variable: "--font-fraunces",
   subsets: ["latin"],
-  weight: ["300", "400", "500", "600"],
+  // When `axes` is set, `weight` must be omitted (next/font treats it as variable).
   style: ["normal", "italic"],
   display: "swap",
   axes: ["SOFT", "WONK", "opsz"],

@@ -9,6 +9,7 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
+import { useEffect, useState } from "react";
 import { useReducedMotion } from "@/hooks/useReducedMotion";
 
 interface Props {
@@ -39,6 +40,8 @@ export function TelemetryChart({
   peakCallout = false,
 }: Props) {
   const reduced = useReducedMotion();
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
   const data = values.map((v, i) => ({ i, v }));
   const peak = Math.max(...values);
   const isEmber = tone === "ember";
@@ -58,7 +61,17 @@ export function TelemetryChart({
           </span>
         )}
       </div>
-      <div className="h-[88px] -mx-2">
+      <div className="h-[88px] -mx-2 min-w-0">
+        {!mounted ? (
+          <div
+            aria-hidden
+            className="h-full w-full"
+            style={{
+              background:
+                "linear-gradient(180deg, var(--hairline-soft), transparent)",
+            }}
+          />
+        ) : (
         <ResponsiveContainer width="100%" height="100%">
           <AreaChart data={data} margin={{ top: 4, right: 8, left: 8, bottom: 0 }}>
             <defs>
@@ -112,6 +125,7 @@ export function TelemetryChart({
             />
           </AreaChart>
         </ResponsiveContainer>
+        )}
       </div>
     </div>
   );
