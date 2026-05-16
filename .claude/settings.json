@@ -1,0 +1,20 @@
+{
+  "permissions": {
+    "allow": [
+      "Read(//c/Users/yadav/.claude/bin/**)",
+      "Read(//c/Users/yadav/.claude/.ccg/**)",
+      "Bash(mkdir -p \"c:\\\\Users\\\\yadav\\\\Downloads\\\\Google_Agent_Hackathon\\\\.claude\\\\plan\")",
+      "Bash(pnpm --version)",
+      "Bash(git --version)",
+      "Bash(git init *)",
+      "Bash(git config *)",
+      "Skill(frontend-design)",
+      "Skill(frontend-design:*)",
+      "Bash(git add *)",
+      "Bash(git commit *)"
+    ],
+    "additionalDirectories": [
+      "c:\\Users\\yadav\\Downloads\\Google_Agent_Hackathon\\.claude"
+    ]
+  }
+}

@@ -1,0 +1,43 @@
+# Node
+node_modules/
+.next/
+.turbo/
+out/
+dist/
+*.tsbuildinfo
+.pnpm-store/
+
+# Env / secrets
+.env
+.env.local
+.env.*.local
+*.pem
+
+# Logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+
+# GAN screenshots are large; keep feedback markdown but ignore raw screenshots
+gan-harness/screenshots/*.png
+gan-harness/screenshots/*.jpg
+gan-harness/screenshots/*.webm
+gan-harness/screenshots/*.mp4
+!gan-harness/screenshots/.gitkeep
+
+# Python (backend later)
+__pycache__/
+*.py[cod]
+.venv/
+.uv-cache/
+
+# Build artifacts
+build/
+coverage/
