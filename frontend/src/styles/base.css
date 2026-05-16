@@ -1,0 +1,152 @@
+/* ============================================================
+   Aegis — base / element defaults
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink-canvas);
+  color: var(--bone);
+  font-family: var(--font-ui);
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 1.5;
+  letter-spacing: var(--tracking-ui);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  min-height: 100vh;
+  /* Hairline background grid — subliminal anchor */
+  background-image:
+    linear-gradient(to right, var(--hairline-grid) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--hairline-grid) 1px, transparent 1px);
+  background-size: 64px 64px;
+  background-position: 0 0;
+  background-attachment: fixed;
+}
+
+/* Selection */
+::selection {
+  background: var(--ember-glow);
+  color: var(--bone);
+}
+
+/* Scrollbar — minimal */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--hairline-bright) transparent;
+}
+*::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--hairline-bright);
+  border-radius: var(--radius-xs);
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--hairline-mid);
+}
+
+/* Headings reset; component-level styling controls */
+h1, h2, h3, h4, h5, h6 {
+  margin: 0;
+  font-weight: 400;
+}
+
+p { margin: 0; }
+button { font: inherit; color: inherit; background: none; border: 0; padding: 0; cursor: pointer; }
+a { color: inherit; text-decoration: none; }
+
+/* Focus rings — ember, 2px outline 3px offset, fade in */
+:focus-visible {
+  outline: 2px solid var(--ember-400);
+  outline-offset: 3px;
+  transition: outline-color var(--dur-fast) var(--ease-out-expo);
+}
+
+/* Tabular numeric data class */
+.num,
+[data-num] {
+  font-family: var(--font-mono);
+  font-feature-settings: "calt" 1, "liga" 1, "zero" 1, "tnum" 1;
+  font-variant-numeric: tabular-nums slashed-zero;
+}
+
+/* Editorial section eyebrow — Fraunces small-caps + 1px rule */
+.eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 500;
+  font-variant-caps: all-small-caps;
+  text-transform: lowercase;
+  letter-spacing: var(--tracking-eyebrow);
+  color: var(--slate);
+}
+.eyebrow::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--hairline-mid), transparent 70%);
+}
+
+/* The hairline-decorated surface — top-edge gradient + bottom hair */
+.surface {
+  position: relative;
+  background: var(--ink-surface);
+  border-bottom: 1px solid var(--hairline-soft);
+}
+.surface::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--hairline-mid) 20%,
+    var(--hairline-bright) 50%,
+    var(--hairline-mid) 80%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+/* Tabular timestamp with dimmed sub-second segment */
+.ts {
+  font-family: var(--font-mono);
+  font-feature-settings: "calt" 1, "tnum" 1, "zero" 1;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.01em;
+}
+.ts .ts-sub {
+  opacity: 0.5;
+}
+
+/* Reduced motion alternative */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 100ms !important;
+    scroll-behavior: auto !important;
+  }
+}

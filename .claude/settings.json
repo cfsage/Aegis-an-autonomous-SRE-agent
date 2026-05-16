@@ -11,7 +11,10 @@
       "Skill(frontend-design)",
       "Skill(frontend-design:*)",
       "Bash(git add *)",
-      "Bash(git commit *)"
+      "Bash(git commit *)",
+      "Bash(rm -rf node_modules pnpm-lock.yaml)",
+      "Bash(pnpm install *)",
+      "Bash(git -c core.autocrlf=false commit -m \"chore\\(frontend\\): bootstrap next.js 16 + tailwind v4 + design tokens\")"
     ],
     "additionalDirectories": [
       "c:\\Users\\yadav\\Downloads\\Google_Agent_Hackathon\\.claude"
