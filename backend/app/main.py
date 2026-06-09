@@ -3,6 +3,7 @@ Aegis — Autonomous SRE Agent
 FastAPI Backend Application
 """
 
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -13,6 +14,7 @@ app = FastAPI(
     title="Aegis SRE Agent",
     description="Autonomous Site Reliability Engineering Agent powered by Gemini 3 + Dynatrace MCP",
     version="0.1.0",
+    root_path=os.getenv("API_ROOT_PATH", ""),
 )
 
 # CORS — allow frontend origins
