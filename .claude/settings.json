@@ -30,7 +30,8 @@
       "Bash(tasklist)",
       "Bash(:)",
       "Bash(curl -s -o /dev/null -w \"/ → %{http_code}\\\\n\" http://localhost:3000/)",
-      "Bash(git -c core.autocrlf=false commit -m \"refactor\\(incident\\): swap AgentStep height animation for transform+opacity\")"
+      "Bash(git -c core.autocrlf=false commit -m \"refactor\\(incident\\): swap AgentStep height animation for transform+opacity\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:3000/_style)"
     ],
     "additionalDirectories": [
       "c:\\Users\\yadav\\Downloads\\Google_Agent_Hackathon\\.claude",

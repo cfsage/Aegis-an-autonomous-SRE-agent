@@ -25,13 +25,12 @@ from app.models.incident import (
 from app.services.store import incident_store
 from app.services.event_bus import event_bus
 from app.services.rca_service import generate_rca_report
-from app.mcp.dynatrace_client import DynatraceClient
+from app.mcp.dynatrace_client import dt_client
 from app.agent import gemini_engine
 
 logger = logging.getLogger(__name__)
 
-# Dynatrace MCP client
-dt_client = DynatraceClient()
+# Dynatrace MCP client is imported as singleton `dt_client`
 
 
 def trigger_investigation(incident_id: str):

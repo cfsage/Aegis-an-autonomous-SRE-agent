@@ -17,9 +17,9 @@
 </p>
 
 <p align="center">
-  <img src="https://img.shields.io/badge/Google%20Cloud-Agent%20Builder-4285F4?style=flat-square&logo=google-cloud" />
-  <img src="https://img.shields.io/badge/Gemini%203-Pro-8E75B2?style=flat-square&logo=google" />
-  <img src="https://img.shields.io/badge/Dynatrace-MCP-6F2DA8?style=flat-square&logo=dynatrace" />
+  <img src="https://img.shields.io/badge/Google%20ADK-Agent%20Development%20Kit-4285F4?style=flat-square&logo=google-cloud" />
+  <img src="https://img.shields.io/badge/Gemini%202.5-Pro-8E75B2?style=flat-square&logo=google" />
+  <img src="https://img.shields.io/badge/Dynatrace-MCP%20Protocol-6F2DA8?style=flat-square&logo=dynatrace" />
   <img src="https://img.shields.io/badge/License-MIT-green?style=flat-square" />
 </p>
 
@@ -37,9 +37,9 @@ It reduces Mean Time To Resolution (MTTR) from 47 minutes to under 60 seconds.
 
 ---
 
-## Demo
+## Demo & Walkthrough
 
-> 🎬 [Watch the 3-minute demo →](#)
+> 🎬 [View UI Screenshots & Autonomous Run WebP Recordings →](docs/WALKTHROUGH.md)
 
 <p align="center">
   <em>Aegis detecting a latency spike, correlating with a recent deployment, proposing a rollback, and resolving the incident — all in real-time.</em>
@@ -51,28 +51,29 @@ It reduces Mean Time To Resolution (MTTR) from 47 minutes to under 60 seconds.
 
 ```
 ┌─────────────────────────────────────────────────────────────┐
-│  Browser (Next.js 15 App)                                    │
-│  Marketing Landing · Dashboard · Incident Detail · Settings  │
+│  Browser (Next.js 16 App)                                    │
+│  Dashboard · Incidents List · War Room · Style Guide         │
 │  SSE consumer for live agent reasoning                       │
 └──────────────────────────┬──────────────────────────────────┘
                            │ HTTPS + SSE
 ┌──────────────────────────▼──────────────────────────────────┐
 │  FastAPI on Cloud Run                                        │
-│  /api/incidents · /api/webhooks · /api/stream · /api/approve │
+│  /api/incidents · /api/webhooks · /api/stream · /api/adk     │
 └────────┬────────────┬────────────────────────┬──────────────┘
          │            │                        │
          ▼            ▼                        ▼
    ┌──────────┐ ┌─────────────┐    ┌──────────────────────┐
-   │Firestore │ │Secret Mgr   │    │ Agent Builder runtime│
-   │          │ │             │    │ + Gemini 3 Pro       │
+   │In-memory │ │Secret Mgr   │    │ Google ADK Agent     │
+   │Store     │ │             │    │ + Gemini 2.5 Pro     │
    └──────────┘ └─────────────┘    └──────┬───────────────┘
                                           │
                 ┌─────────────────────────┼──────────────────┐
                 ▼                         ▼                  ▼
         ┌──────────────────┐    ┌─────────────────┐ ┌──────────────┐
         │ Dynatrace MCP    │    │ Internal tools  │ │ Notify tool  │
-        │ (problems,traces,│    │ (rca, hypothesis│ │ (Slack/Email)│
-        │  logs,metrics)   │    │  verify)        │ │              │
+        │ (JSON-RPC 2.0)   │    │ (rca, hypothesis│ │ (Slack/Email)│
+        │ problems, logs   │    │  verify)        │ │              │
+        │ metrics, traces  │    │                 │ │              │
         └──────────────────┘    └─────────────────┘ └──────────────┘
 ```
 
@@ -91,15 +92,43 @@ It reduces Mean Time To Resolution (MTTR) from 47 minutes to under 60 seconds.
 
 ---
 
+## Partner Integration
+
+### Dynatrace MCP Server
+
+Aegis integrates with Dynatrace via the **Model Context Protocol (MCP)** — a standard for connecting AI agents with external tools. The integration supports three modes:
+
+| Mode | Transport | Description |
+|------|-----------|-------------|
+| **MCP** | JSON-RPC 2.0 over HTTP | Full protocol compliance with `tools/call` and `tools/list` |
+| **Direct** | REST API | Falls back to Dynatrace REST v2 APIs when MCP endpoint unavailable |
+| **Mock** | In-memory | Realistic mock data for development/demo |
+
+**MCP Tools registered:**
+- `dynatrace-problems-list` — Active problems and anomalies
+- `dynatrace-metrics-query` — Response time, error rate, throughput
+- `dynatrace-logs-search` — Error pattern detection
+- `dynatrace-traces-search` — Distributed trace analysis
+- `dynatrace-events-list` — Deployment event correlation
+
+### Google ADK (Agent Development Kit)
+
+The agent is built using the **Google ADK** (`google-adk`) framework, which provides:
+- Structured agent definition with system prompts
+- Automatic tool registration and invocation
+- Gemini 2.5 Pro as the reasoning backbone
+- `InMemoryRunner` for session management
+
+---
+
 ## Features
 
-- 🧠 **Live Reasoning** — Watch the agent think token-by-token as it diagnoses incidents
+- 🧠 **Live Reasoning** — Watch the agent think step-by-step as it diagnoses incidents
 - 📊 **Confidence Telemetry** — Every hypothesis comes with evidence and a 0–100 score
 - 🔒 **Human-in-the-Loop** — No write action without explicit approval (or policy)
 - 📋 **Audit Ledger** — Every tool call, decision, and approval is logged and exportable
-- 🚨 **War Room Mode** — P0 incidents shift the UI into high-contrast emergency mode
-- 🪞 **Meta-Observability** — Aegis monitors itself via Dynatrace (the loop closes)
 - 📝 **Auto RCA** — Structured post-incident reports generated automatically
+- 🎨 **Premium Design** — "Dark Editorial" aesthetic with OKLCH colors, Fraunces serif type, persimmon ember accents
 
 ---
 
@@ -109,8 +138,8 @@ It reduces Mean Time To Resolution (MTTR) from 47 minutes to under 60 seconds.
 
 - Node.js 20+ / pnpm
 - Python 3.12+
-- Google Cloud account with Agent Builder enabled
-- Dynatrace tenant with API access
+- Google Cloud account (optional — for live Gemini)
+- Dynatrace tenant (optional — mock data available)
 
 ### Frontend
 
@@ -125,23 +154,47 @@ pnpm dev
 ```bash
 cd backend
 pip install -r requirements.txt
-uvicorn app.main:app --reload
+uvicorn app.main:app --reload --port 8000
 ```
 
 ### Environment Variables
 
 ```env
-# Backend
-GOOGLE_CLOUD_PROJECT=your-project-id
-DYNATRACE_TENANT_URL=https://your-tenant.live.dynatrace.com
-DYNATRACE_API_TOKEN=dt0c01.xxxx
-GEMINI_API_KEY=your-gemini-key
-FIRESTORE_PROJECT_ID=your-project-id
+# Backend (.env file in backend/)
+GEMINI_API_KEY=your-gemini-key           # For live AI reasoning
+DYNATRACE_TENANT_URL=https://xxx.live.dynatrace.com  # Optional
+DYNATRACE_API_TOKEN=dt0c01.xxxx          # Optional
+DYNATRACE_MCP_ENDPOINT=http://localhost:9876  # Optional MCP server
 
-# Frontend
+# Frontend (.env.local in frontend/)
 NEXT_PUBLIC_API_URL=http://localhost:8000
-NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_xxxx
 ```
+
+### Test: Trigger an Incident
+
+```bash
+# PowerShell
+Invoke-RestMethod -Uri "http://localhost:8000/api/webhooks/dynatrace" `
+  -Method Post -ContentType "application/json" `
+  -Body '{"ProblemID":"P-001","ProblemTitle":"High response time on checkout-service","State":"OPEN","ProblemSeverity":"PERFORMANCE","ImpactedEntities":[{"type":"SERVICE","name":"checkout-service","entity":"SERVICE-ABC123"}]}'
+```
+
+Then open `http://localhost:3000/dashboard` to see the agent working.
+
+---
+
+## API Endpoints
+
+| Endpoint | Method | Description |
+|----------|--------|-------------|
+| `/health` | GET | Health check with Dynatrace mode and Gemini status |
+| `/api/incidents` | GET | List all incidents |
+| `/api/incidents/metrics` | GET | Dashboard aggregated metrics |
+| `/api/incidents/{id}` | GET | Full incident detail with agent steps |
+| `/api/webhooks/dynatrace` | POST | Receive Dynatrace problem webhooks |
+| `/api/stream/{id}` | GET (SSE) | Real-time agent reasoning event stream |
+| `/api/approve` | POST | Approve or reject a remediation |
+| `/api/adk/investigate` | POST | ADK-powered investigation endpoint |
 
 ---
 
@@ -149,13 +202,12 @@ NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=pk_xxxx
 
 | Layer | Technology |
 |-------|-----------|
-| Frontend | Next.js 15, TypeScript, Tailwind CSS, shadcn/ui, Framer Motion |
+| Frontend | Next.js 16, TypeScript, Tailwind v4, Framer Motion |
+| Design | OKLCH tokens, Fraunces serif, "Dark Editorial" system |
 | Backend | Python 3.12, FastAPI, Pydantic v2 |
-| AI | Gemini 3 Pro, Google Cloud Agent Builder |
-| Data | Dynatrace MCP Server |
-| Storage | Cloud Firestore |
-| Hosting | Vercel (frontend), Cloud Run (backend) |
-| Auth | Clerk |
+| AI Agent | Google ADK, Gemini 2.5 Pro |
+| Observability | Dynatrace MCP (JSON-RPC 2.0) |
+| Hosting | Cloud Run (backend), Vercel (frontend) |
 
 ---
 

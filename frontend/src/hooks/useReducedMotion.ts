@@ -8,16 +8,16 @@ import { useEffect, useState } from "react";
  * translate/scale/path-draw and snap values to final positions.
  */
 export function useReducedMotion(): boolean {
-  const [reduced, setReduced] = useState(false);
+	const [reduced, setReduced] = useState(false);
 
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
-    setReduced(mql.matches);
-    const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
-    mql.addEventListener("change", onChange);
-    return () => mql.removeEventListener("change", onChange);
-  }, []);
+	useEffect(() => {
+		if (typeof window === "undefined") return;
+		const mql = window.matchMedia("(prefers-reduced-motion: reduce)");
+		setReduced(mql.matches);
+		const onChange = (e: MediaQueryListEvent) => setReduced(e.matches);
+		mql.addEventListener("change", onChange);
+		return () => mql.removeEventListener("change", onChange);
+	}, []);
 
-  return reduced;
+	return reduced;
 }

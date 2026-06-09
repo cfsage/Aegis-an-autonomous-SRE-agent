@@ -5,101 +5,101 @@
    ============================================================ */
 
 :root {
-  /* --- Canvas / surfaces -------------------------------------- */
-  --ink-canvas: oklch(13% 0.008 250);
-  --ink-surface: oklch(17% 0.010 250);
-  --ink-elevated: oklch(22% 0.012 250);
-  --ink-overlay: oklch(8% 0.005 250);
+	/* --- Canvas / surfaces -------------------------------------- */
+	--ink-canvas: oklch(13% 0.008 250);
+	--ink-surface: oklch(17% 0.01 250);
+	--ink-elevated: oklch(22% 0.012 250);
+	--ink-overlay: oklch(8% 0.005 250);
 
-  /* --- Hairline system --------------------------------------- */
-  --hairline-bright: oklch(100% 0 0 / 0.08);
-  --hairline-mid: oklch(100% 0 0 / 0.05);
-  --hairline-soft: oklch(100% 0 0 / 0.025);
-  --hairline-grid: oklch(100% 0 0 / 0.018);
+	/* --- Hairline system --------------------------------------- */
+	--hairline-bright: oklch(100% 0 0 / 0.08);
+	--hairline-mid: oklch(100% 0 0 / 0.05);
+	--hairline-soft: oklch(100% 0 0 / 0.025);
+	--hairline-grid: oklch(100% 0 0 / 0.018);
 
-  /* --- Text — bone, oyster, slate, grave --------------------- */
-  --bone: oklch(96% 0.006 80);
-  --oyster: oklch(78% 0.008 80);
-  --slate: oklch(54% 0.010 250);
-  --grave: oklch(38% 0.012 250);
+	/* --- Text — bone, oyster, slate, grave --------------------- */
+	--bone: oklch(96% 0.006 80);
+	--oyster: oklch(78% 0.008 80);
+	--slate: oklch(54% 0.01 250);
+	--grave: oklch(38% 0.012 250);
 
-  /* --- Persimmon ember (semantic accent only) ---------------- */
-  --ember-300: oklch(78% 0.16 38);
-  --ember-400: oklch(70% 0.20 35);
-  --ember-500: oklch(62% 0.21 32);
-  --ember-glow: oklch(70% 0.20 35 / 0.32);
-  --ember-glow-strong: oklch(70% 0.20 35 / 0.48);
-  --ember-wash: oklch(70% 0.20 35 / 0.08);
-  --ember-edge: oklch(70% 0.20 35 / 0.34);
+	/* --- Persimmon ember (semantic accent only) ---------------- */
+	--ember-300: oklch(78% 0.16 38);
+	--ember-400: oklch(70% 0.2 35);
+	--ember-500: oklch(62% 0.21 32);
+	--ember-glow: oklch(70% 0.2 35 / 0.32);
+	--ember-glow-strong: oklch(70% 0.2 35 / 0.48);
+	--ember-wash: oklch(70% 0.2 35 / 0.08);
+	--ember-edge: oklch(70% 0.2 35 / 0.34);
 
-  /* --- Ice cyan (resolved / verified only) ------------------- */
-  --ice-400: oklch(82% 0.13 200);
-  --ice-glow: oklch(82% 0.13 200 / 0.28);
-  --ice-wash: oklch(82% 0.13 200 / 0.10);
+	/* --- Ice cyan (resolved / verified only) ------------------- */
+	--ice-400: oklch(82% 0.13 200);
+	--ice-glow: oklch(82% 0.13 200 / 0.28);
+	--ice-wash: oklch(82% 0.13 200 / 0.1);
 
-  /* --- Severity scale (distinct chromatic identities) -------- */
-  --sev-p0: oklch(58% 0.24 22);
-  --sev-p1: var(--ember-400);
-  --sev-p2: oklch(75% 0.10 80);
-  --sev-p3: oklch(65% 0.04 250);
+	/* --- Severity scale (distinct chromatic identities) -------- */
+	--sev-p0: oklch(58% 0.24 22);
+	--sev-p1: var(--ember-400);
+	--sev-p2: oklch(75% 0.1 80);
+	--sev-p3: oklch(65% 0.04 250);
 
-  /* --- Status colors ----------------------------------------- */
-  --status-resolved: var(--ice-400);
-  --status-investigating: var(--ember-400);
-  --status-open: var(--sev-p0);
-  --status-awaiting: oklch(75% 0.10 80);
-  --status-healthy: oklch(72% 0.13 165);
+	/* --- Status colors ----------------------------------------- */
+	--status-resolved: var(--ice-400);
+	--status-investigating: var(--ember-400);
+	--status-open: var(--sev-p0);
+	--status-awaiting: oklch(75% 0.1 80);
+	--status-healthy: oklch(72% 0.13 165);
 
-  /* --- Typography ------------------------------------------- */
-  --font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
-  --font-ui: var(--font-onest), system-ui, sans-serif;
-  --font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
+	/* --- Typography ------------------------------------------- */
+	--font-display: var(--font-fraunces), "Iowan Old Style", Georgia, serif;
+	--font-ui: var(--font-onest), system-ui, sans-serif;
+	--font-mono: var(--font-jetbrains-mono), ui-monospace, monospace;
 
-  --text-hero: clamp(4rem, 2rem + 8vw, 9rem);
-  --text-title: clamp(2rem, 1rem + 3vw, 3.5rem);
-  --text-display-sm: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
+	--text-hero: clamp(4rem, 2rem + 8vw, 9rem);
+	--text-title: clamp(2rem, 1rem + 3vw, 3.5rem);
+	--text-display-sm: clamp(1.5rem, 1rem + 1.5vw, 2.25rem);
 
-  --tracking-hero: -0.04em;
-  --tracking-title: -0.02em;
-  --tracking-eyebrow: 0.12em;
-  --tracking-ui: -0.005em;
+	--tracking-hero: -0.04em;
+	--tracking-title: -0.02em;
+	--tracking-eyebrow: 0.12em;
+	--tracking-ui: -0.005em;
 
-  /* --- Spacing / radius (intentionally restrained) ----------- */
-  --space-1: 0.25rem;
-  --space-2: 0.5rem;
-  --space-3: 0.75rem;
-  --space-4: 1rem;
-  --space-6: 1.5rem;
-  --space-8: 2rem;
-  --space-12: 3rem;
-  --space-16: 4rem;
-  --space-24: 6rem;
-  --space-section: clamp(3rem, 2rem + 4vw, 6rem);
+	/* --- Spacing / radius (intentionally restrained) ----------- */
+	--space-1: 0.25rem;
+	--space-2: 0.5rem;
+	--space-3: 0.75rem;
+	--space-4: 1rem;
+	--space-6: 1.5rem;
+	--space-8: 2rem;
+	--space-12: 3rem;
+	--space-16: 4rem;
+	--space-24: 6rem;
+	--space-section: clamp(3rem, 2rem + 4vw, 6rem);
 
-  --radius-none: 0;
-  --radius-xs: 2px;
-  --radius-sm: 3px;
-  --radius-md: 4px;
-  --radius-lg: 6px;
+	--radius-none: 0;
+	--radius-xs: 2px;
+	--radius-sm: 3px;
+	--radius-md: 4px;
+	--radius-lg: 6px;
 
-  /* --- Motion ----------------------------------------------- */
-  --dur-instant: 80ms;
-  --dur-fast: 150ms;
-  --dur-base: 220ms;
-  --dur-slow: 420ms;
-  --dur-loader: 1400ms;
-  --dur-breathe: 2800ms;
-  --dur-countup: 1100ms;
+	/* --- Motion ----------------------------------------------- */
+	--dur-instant: 80ms;
+	--dur-fast: 150ms;
+	--dur-base: 220ms;
+	--dur-slow: 420ms;
+	--dur-loader: 1400ms;
+	--dur-breathe: 2800ms;
+	--dur-countup: 1100ms;
 
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
-  --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
-  --ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
-  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+	--ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+	--ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-in-out-soft: cubic-bezier(0.65, 0, 0.35, 1);
+	--ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
 
-  /* --- Chart colors (semantic) ------------------------------ */
-  --chart-line: var(--oyster);
-  --chart-grid: var(--hairline-soft);
-  --chart-anomaly: var(--ember-edge);
-  --chart-anomaly-stroke: var(--ember-400);
-  --chart-axis: var(--grave);
+	/* --- Chart colors (semantic) ------------------------------ */
+	--chart-line: var(--oyster);
+	--chart-grid: var(--hairline-soft);
+	--chart-anomaly: var(--ember-edge);
+	--chart-anomaly-stroke: var(--ember-400);
+	--chart-axis: var(--grave);
 }

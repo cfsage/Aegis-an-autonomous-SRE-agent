@@ -6,11 +6,11 @@
  */
 
 interface Props {
-  opacity?: number;
+	opacity?: number;
 }
 
 const noiseSvg = encodeURIComponent(
-  `<svg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'>
+	`<svg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'>
     <filter id='n'>
       <feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/>
       <feColorMatrix type='matrix' values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/>
@@ -20,18 +20,18 @@ const noiseSvg = encodeURIComponent(
 );
 
 export function GrainOverlay({ opacity = 0.035 }: Props) {
-  return (
-    <div
-      aria-hidden
-      data-grain
-      className="fixed inset-0 pointer-events-none"
-      style={{
-        zIndex: 40,
-        opacity,
-        mixBlendMode: "overlay",
-        backgroundImage: `url("data:image/svg+xml,${noiseSvg}")`,
-        backgroundSize: "256px 256px",
-      }}
-    />
-  );
+	return (
+		<div
+			aria-hidden
+			data-grain
+			className="fixed inset-0 pointer-events-none"
+			style={{
+				zIndex: 40,
+				opacity,
+				mixBlendMode: "overlay",
+				backgroundImage: `url("data:image/svg+xml,${noiseSvg}")`,
+				backgroundSize: "256px 256px",
+			}}
+		/>
+	);
 }
